@@ -1,6 +1,6 @@
 /* Physical scene interactions: pickup, tool assembly, environment changes and harmless red herrings. */
 'use strict';
-const worldArt=(id,cls='')=>`<img class="world-art ${cls}" src="assets/world/${id}.webp" alt="" draggable="false">`;
+const worldArt=(id,cls='')=>`<img class="world-art ${cls}" src="assets/fast/world/${id}.webp" alt="" draggable="false">`;
 Object.assign(items,{shears:[worldArt('shears'),'修枝剪'],pole:[worldArt('pole'),'细长木杆'],lashedShears:[`<span class="assembled-shears">${worldArt('shears')}${propImage('rope')}</span>`,'绑好绳的修枝剪'],longShears:[`<span class="long-shears">${worldArt('pole')}${worldArt('shears')}</span>`,'长柄修枝剪']});
 let worldTakingTowel=false;
 function openKitchenCabinet(){if(flag('cabinetOpen'))return;worldAction('cabinet',$('[data-world="kitchen-cabinet"]'),()=>{mark('cabinetOpen');render();say('柜门拉开了，深处压着一角旧布。')},650)}

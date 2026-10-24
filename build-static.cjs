@@ -1,0 +1,12 @@
+const fs=require('fs'),path=require('path');
+const root=__dirname,dist=path.join(root,'dist');
+let html=fs.readFileSync(path.join(root,'index.template.html'),'utf8');
+const styles=[...html.matchAll(/<link rel="stylesheet" href="([^"?]+)(?:\?[^"]*)?">/g)].map(x=>x[1]);
+const scripts=[...html.matchAll(/<script src="([^"?]+)(?:\?[^"]*)?"><\/script>/g)].map(x=>x[1]);
+if(!styles.length||!scripts.includes('scene-assets.js'))throw Error('Missing source bundle entries');
+fs.writeFileSync(path.join(dist,'app.css'),styles.map(f=>'/* '+f+' */\n'+fs.readFileSync(path.join(dist,f),'utf8')).join('\n'));
+fs.writeFileSync(path.join(dist,'app.js'),"'use strict';\n"+scripts.map(f=>'\n/* '+f+' */\n'+fs.readFileSync(path.join(dist,f),'utf8')+'\n;').join('\n'));
+html=html.replace(/<link rel="stylesheet" href="[^\"]+">/g,'').replace('</head>','<link rel="stylesheet" href="app.css?v=20261024-stream2"></head>');
+html=html.replace(/<script src="[^\"]+"><\/script>/g,'').replace('</body>','<script defer src="app.js?v=20261024-stream2"></script></body>');
+fs.writeFileSync(path.join(dist,'index.html'),html);
+console.log('Built one JS and one CSS request from',scripts.length,'scripts and',styles.length,'stylesheets.');

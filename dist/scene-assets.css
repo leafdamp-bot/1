@@ -1,0 +1,10 @@
+.scene-load-mask[hidden]{display:none!important}
+.scene-load-mask{position:absolute;inset:0;z-index:38;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:24px;text-align:center;background:radial-gradient(ellipse at 50% 45%,#293a31,#101f1c 80%);color:#eddfb5}
+.scene-load-mask p{margin:0;font-size:14px;letter-spacing:2px;line-height:1.8}
+.scene-load-star{font-size:52px;line-height:1;animation:sceneLoadingGlow 1.6s ease-in-out infinite}
+.scene-load-mask button{padding:12px 20px;border:1px solid #b7a472;border-radius:5px;background:#32473a;color:#f4e7bd;min-height:44px}
+.scene-load-mask.failed .scene-load-star{animation:none}
+.scene.scene-loading>:not(.scene-load-mask):not(#intro):not(.opening-film){visibility:hidden!important}
+.scene.scene-loading>.room{opacity:0!important}
+@keyframes sceneLoadingGlow{50%{opacity:.35;transform:scale(.9)}}
+@media(prefers-reduced-motion:reduce){.scene-load-star{animation:none}}

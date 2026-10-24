@@ -10,7 +10,7 @@ function renderSquirrelChase(){
   if(!squirrelVisit||squirrelVisit.mode!=='picnic'){
    stopSquirrelVisit();scene.insertAdjacentHTML('beforeend',squirrelMarkup('scene-companion','eat'));
    const actor=scene.querySelector('.scene-companion');squirrelVisit={source:state,index,actor,raf:0,mode:'picnic'};
-   scene.insertAdjacentHTML('beforeend','<img class="found-cookies" src="assets/cinematic/cookie.webp" alt="终于找回的曲奇饼干">');
+   scene.insertAdjacentHTML('beforeend','<img class="found-cookies" src="assets/fast/cinematic/cookie.webp" alt="终于找回的曲奇饼干">');
   }return;
  }
  if(squirrelVisit)return;
